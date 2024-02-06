@@ -1,0 +1,30 @@
+CREATE PROCEDURE [dbo].[sp_AddLecturerUser]
+	-- Add the parameters for the stored procedure here
+	@Name nvarchar(50),
+	@Surname nvarchar(50),
+	@Title nvarchar(50),
+	@Position nvarchar(50),
+	@Username nvarchar(50),
+	@Password nvarchar(50),
+	@UserStatus nvarchar(50)
+AS
+BEGIN
+	DECLARE @ID int;
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO tblUser(Name, Surname, Title, Position, Username, Password, UserStatus)
+	VALUES(@Name, @Surname, @Title, @Position, @Username, @Password, @UserStatus)
+
+	SET @ID = SCOPE_IDENTITY();
+
+                SET IDENTITY_INSERT tblLecturer ON
+
+ 
+
+                INSERT INTO tblLecturer (UserID) values(@ID)
+
+END
+GO
